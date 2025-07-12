@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap");
+
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+            background-image: url("./img/background.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            overflow: auto;
+            position: relative;
+        }
+
+        nav {
+            width: 100%;
+            height: 10vh;
+            position: relative;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: rgb(17, 180, 240);
+            text-shadow: 0 0 10px rgb(17, 180, 240);
+        }
+
+        .hamburg, .cancel {
+            cursor: pointer;
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            color: white;
+            display: none;
+            font-size: clamp(2.5rem, 0.5rem + 5vw, 3rem);
+        }
+
+        .nav-container .links {
+            display: flex;
+        }
+
+        .nav-container .links a {
+            font-size: 1.2rem;
+            color: white;
+            margin: 0 20px;
+            text-decoration: none;
+            font-weight: 550;
+            transition: 0.3s linear;
+        }
+
+        .nav-container .links a:hover {
+            color: rgb(17, 180, 240);
+            border-bottom: 2px solid rgb(17, 180, 240);
+        }
+
+        .nav-container .links .active {
+            color: rgb(17, 180, 240);
+            border-bottom: 2px solid rgb(17, 180, 240);
+        }
+
+        .dropdown {
+            z-index: 1000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            transform: translateY(-500px);
+            width: 100%;
+            height: auto;
+            backdrop-filter: blur(4px) brightness(40%);
+            box-shadow: 0 0 20px black;
+            transition: 0.2s linear;
+        }
+
+        .dropdown .links a {
+            display: flex;
+            color: white;
+            text-decoration: none;
+            padding: 15px 0;
+            justify-content: center;
+            align-items: center;
+            transition: 0.2s linear;
+        }
+
+        .dropdown .links a:hover {
+            background-color: rgb(17, 180, 240);
+        }
+
+        /* Certificate Section */
+        .services-container {
+            width: 100%;
+            min-height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .services-content {
+            width: 80%;
+            max-width: 1000px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            color: white;
+        }
+
+        .services-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .services-header h1 {
+            font-size: 2.5rem;
+            color: rgb(17, 180, 240);
+            text-shadow: 0 0 10px rgb(17, 180, 240);
+            margin-bottom: 1rem;
+        }
+
+        .certificate-list {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 2rem;
+            border-radius: 15px;
+            color: white;
+        }
+
+        .certificate-list h2 {
+            font-size: 1.8rem;
+            text-align: center;
+            color: rgb(17, 180, 240);
+            text-shadow: 0 0 10px rgb(17, 180, 240);
+            margin-bottom: 1.5rem;
+        }
+
+        .certificates {
+            list-style-type: none;
+            padding-left: 0;
+            font-size: 1rem;
+            line-height: 2;
+        }
+
+        .certificates li {
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 0.5rem;
+        }
+
+        .certificates a:link,
+.certificates a:visited {
+    color: #00ff00; /* hijau terang */
+    text-decoration: none;
+}
+
+.certificates a:hover {
+    color: #00ff00;
+    text-decoration: underline;
+}
+
+
+        @media (max-height: 800px) {
+            body {
+                height: auto;
+                min-height: 100vh;
+            }
+
+            .services-container {
+                height: auto;
+                min-height: 90vh;
+            }
+        }
+
+        @media (max-width: 884px) {
+            nav .logo {
+                position: absolute;
+                top: 16px;
+                left: 15px;
+                font-size: 1.5rem;
+            }
+
+            .nav-container .links {
+                display: none;
+            }
+
+            .hamburg, .cancel {
+                display: block;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .services-container {
+                padding: 1rem;
+            }
+
+            .services-content {
+                width: 95%;
+                padding: 1.5rem;
+            }
+
+            .certificate-list h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+    <title>Certificate - Portfolio Website</title>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo" data-aos="zoom-in" data-aos-duration="1500">
+                Hafidh <span>Qodry Ramadhan</span>
+            </div>
+            <div class="links">
+                <div class="link"><a href="index.html">Home</a></div>
+                <div class="link"><a href="about.html">About</a></div>
+                <div class="link"><a href="skill.html">Skills</a></div>
+                <div class="link active"><a href="certificate.html">Certificate</a></div>
+                <div class="link"><a href="contact.html">Contact</a></div>
+            </div>
+        </div>
+        <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>
+        <div class="dropdown">
+            <div class="links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="skill.html">Skills</a>
+                <a href="certificate.html">Certificate</a>
+                <a href="contact.html">Contact</a>
+                <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>
+            </div>
+        </div>
+    </nav>
+
+    <div class="services-container">
+        <div class="services-content">
+            <div class="services-header" data-aos="fade-down" data-aos-duration="1500">
+                <h1>My Certificates</h1>
+            </div>
+
+            <div class="certificate-list" data-aos="fade-up" data-aos-duration="1500">
+                <ul class="certificates">
+    <li>
+        <strong>Kimia Farma Big Data Analytics Project</strong> – 15 May 2025
+        [<a href="img/gambar1.pdf" target="_blank">Lihat Sertifikat</a>]
+    </li>
+    <li>
+        <strong>Data Visualization with Story-Telling</strong> – 18 April 2025
+        [<a href="img/gambar2.pdf" target="_blank">Lihat Sertifikat</a>]
+    </li>
+    <li>
+        <strong>Entrepreneurship: Finding and Testing Your Business Idea</strong> – 28 September 2024
+        [<a href="img/gambar3.pdf" target="_blank">Lihat Sertifikat</a>]
+    </li>
+    <li>
+        <strong>Project Management Foundations</strong> – 13 September 2024
+        [<a href="img/gambar4.pdf" target="_blank">Lihat Sertifikat</a>]
+    </li>
+    <li>
+        <strong>Strategic Management to Develop Business Strategy</strong> – 19 April 2025
+        [<a href="img/gambar5.pdf" target="_blank">Lihat Sertifikat</a>]
+    </li>
+    <li>
+        <strong>Dasar-dasar Membangun Cloud IoT Berbasis FOSS</strong> – 5 April 2025
+        [<a href="img/gambar6.pdf" target="_blank">Lihat Sertifikat</a>]
+    </li>
+    <li>
+        <strong>Local Business Goes To International Market</strong> – 13 June 2024
+        [<a href="img/gambar7.pdf" target="_blank">Lihat Sertifikat</a>]
+    </li>
+</ul>
+        </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({ offset: 0 });
+
+        function hamburg() {
+            const navbar = document.querySelector(".dropdown");
+            navbar.style.transform = "translateY(0px)";
+        }
+
+        function cancel() {
+            const navbar = document.querySelector(".dropdown");
+            navbar.style.transform = "translateY(-500px)";
+        }
+    </script>
+</body>
+</html>
